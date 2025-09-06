@@ -1,11 +1,10 @@
 # Docker Compose for Open Ticket v4
-version: '3'
 services:
   openticket:
-    build: .
-    volumes:
-      - openticket:/home/container
-    restart: no
+    image: ghcr.io/morgyn/open-ticket:latest
     container_name: open-ticket
-volumes:
-  openticket:
+    volumes:
+      - ./config:/config
+      - ./database:/database
+      - ./plugins:/plugins
+    restart: restart-unless-stopped
